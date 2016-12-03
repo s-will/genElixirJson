@@ -1,0 +1,127 @@
+{
+  "affiliation": "rnateam",
+  "contact": [
+    {
+      "contactName": "$Contact1",
+      "contactEmail": "$Contact1_Email",
+      "contactRole": [
+        #set $sep=''
+        #for r in $Contact2_Role
+        $sep"$r"
+        #set $sep=','
+        #end for
+      ]
+    },
+    {
+      "contactName": "$Contact2",
+      "contactEmail": "$Contact2_Email",
+      "contactRole": [
+        #set $sep=''
+        #for r in $Contact2_Role
+        $sep"$r"
+        #set $sep=','
+        #end for
+      ]
+    }
+  ],
+  "function": [
+    {
+      "functionName": [
+        #set $sep=''
+        #for $function in $Function_name_EDAM_operation
+        $sep{
+          "term": "$function"
+        }
+        #set $sep=','
+        #end for
+      ],
+      "functionDescription": "$Function_description",
+      "input": [
+        #set $sep = ''
+        ## missing: Input_Description
+        #for $formats,$type in zip($Input_format,$Input_type)
+        $sep{
+          "dataFormat": [
+            #set $sep2=''
+            #for $f in $formats
+            $sep2{
+               "term": "$f"
+            }
+            #set $sep2=','
+            #end for
+          ],
+          "dataType": {
+            "term": "$type"
+          }
+        }
+        #set $sep = ','
+        #end for
+      ],
+      "output": [
+        #set $sep = ''
+        ## missing: Output_Description
+        #for $formats,$type in zip($Output_Format,$Output_Type)
+        $sep{
+          "dataFormat": [
+            #set $sep2=''
+            #for $f in $formats
+            $sep2{
+               "term": "$f"
+            }
+            #set $sep2=','
+            #end for
+          ],
+          "dataType": {
+            "term": "$type"
+          }
+        }
+        #set $sep = ','
+        #end for
+      ]
+    }
+  ],
+  "publications": {
+    "publicationsPrimaryID": "$PMID"
+  },
+  "topic": [
+     #set $sep=''
+     #for $topic in $Topic
+     $sep{
+       "term": "$topic"
+     }
+     #set $sep=','
+     #end for
+  ],
+  "interface": [
+    {
+      "interfaceType": "$Interface1"
+    }
+  ],
+  "resourceType": [
+    "$Resource_Type"
+  ],
+  "name": "$Name",
+  "version": "$Version",
+  "description": "$Description",
+  "homepage": "$Interface1_URI",
+  #if $getVar('License','') != ''
+  "license": "$License",
+  #end if
+  "cost": "Free",
+  "maturity": "Stable",
+  "credits": {
+    #if $getVar('Credits_Developer','') !=''
+    "creditsDeveloper": [
+      "$Credits_Developer"
+    ],
+    #end if
+    #if $getVar('Credits_Contributor','') !=''
+    "creditsContributor": [
+      "$Credits_Contributor"
+    ],
+    #end if
+    "creditsInstitution": [
+      "$Institution"
+    ]
+  }
+}
